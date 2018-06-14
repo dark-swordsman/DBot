@@ -1,50 +1,9 @@
-const tmi = require('tmi.js');
-const oauth = require('./oauthToken.js');
+import { heartbeat, roooooosh } from './modules/commands.js';
+import { client, channel } from './modules/client.js'
 
 let commandPrefix = '!';
 
-let opts = {
-  identity: {
-    username: 'darkswordsmanbot',
-    password: oauth.token
-  },
-  channels: [
-    'darkswordsmantv'
-  ]
-};
-
 let knownCommands = { heartbeat, roooooosh };
-
-function heartbeat (target, context, params) {
-  const msg = 'Yeah, shutup.';
-
-  sendMessage(target, context, msg);
-}
-
-function roooooosh (target, context) {
-  const msgs = [
-    '/me bans roooooosh forever',
-    'roooooosh is the best person ever!',
-    '/me gives roooooosh a plush stitch'
-  ]
-
-  const number = Math.floor(Math.random() * (2 + 1));
-
-  const msg = msgs[number];
-
-  sendMessage(target, context, msg);
-}
-
-// Helper function to send the correct type of message:
-function sendMessage (target, context, message) {
-  if (context['message-type'] === 'whisper') {
-    client.whisper(target, message)
-  } else {
-    client.say(target, message)
-  }
-}
-
-let client = new tmi.client(opts);
 
 client.on('message', onMessageHandler);
 client.on('connected', onConnectedHandler);
@@ -86,7 +45,10 @@ function onMessageHandler (target, context, msg, self) {
 // Called every time the bot connects to Twitch chat:
 function onConnectedHandler (addr, port) {
   console.log(`* Connected to ${addr}:${port}`);
-  client.say(opts.channels[0], '/me walks in and stares at everyone...');
+  client.say(channel, '/me walks in and stares at everyone...');
+  setTimeout(() => {
+    client.say(channel, 'What the hell are you all looking at?!');
+  }, 3000);
 }
 
 // Called every time the bot disconnects from Twitch:
@@ -94,3 +56,6 @@ function onDisconnectedHandler (reason) {
   console.log(`Womp womp, disconnected: ${reason}`);
 }
 
+module.exports = {
+  client
+}

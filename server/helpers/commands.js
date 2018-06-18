@@ -1,15 +1,16 @@
-import { heartbeat, roooooosh } from './modules/commands.js';
-import { client, channel } from './modules/client.js'
+import { onMessageHandler, onConnectedHandler, onDisconnectedHandler } from './modules/handlers.js';
+import { client } from './client.js';
+
+// Helper function to send the correct type of message:
+function sendMessage (target, context, message) {
+  if (context['message-type'] === 'whisper') {
+    client.whisper(target, message)
+  } else {
+    client.say(target, message)
+  }
+}
 
 let commandPrefix = '!';
-
-let knownCommands = { heartbeat, roooooosh };
-
-client.on('message', onMessageHandler);
-client.on('connected', onConnectedHandler);
-client.on('disconnected', onDisconnectedHandler);
-
-client.connect();
 
 // Called every time a message comes in:
 function onMessageHandler (target, context, msg, self) {
@@ -56,6 +57,6 @@ function onDisconnectedHandler (reason) {
   console.log(`Womp womp, disconnected: ${reason}`);
 }
 
-module.exports = {
-  client
-}
+client.on('message', onMessageHandler);
+client.on('connected', onConnectedHandler);
+client.on('disconnected', onDisconnectedHandler);

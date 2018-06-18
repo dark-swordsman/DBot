@@ -29,7 +29,11 @@ function roooooosh (target, context) {
   sendMessage(target, context, msg);
 }
 
-module.exports = {
+var knownCommands = {
   heartbeat: heartbeat,
   roooooosh: roooooosh
+}
+
+module.exports = {
+  knownCommands
 }

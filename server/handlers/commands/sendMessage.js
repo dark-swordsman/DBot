@@ -1,0 +1,12 @@
+import { client } from '../modules/client.js';
+
+// Helper function to send the correct type of message:
+function sendMessage (target, context, message) {
+  if (context['message-type'] === 'whisper') {
+    client.whisper(target, message)
+  } else {
+    client.say(target, message)
+  }
+}
+
+export default sendMessage;

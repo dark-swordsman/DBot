@@ -1,12 +1,15 @@
-import { client, channel } from './modules/client.js';
-import { onMessageHandler, onConnectedHandler, onDisconnectedHandler } from './modules/handlers.js';
+import { client } from './modules/client';
+import { CommandHelpers } from './helpers';
 
-client.on('message', onMessageHandler);
-client.on('connected', onConnectedHandler);
-client.on('disconnected', onDisconnectedHandler);
+class Server {
 
-client.connect();
+  constructor() {
+    // start the tmi client
+    client.connect();
+    // load the commands
+    CommandHelpers.loadCommands();
+  }
 
-module.exports = {
-  client
 }
+
+export default Server;

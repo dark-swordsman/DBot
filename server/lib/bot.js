@@ -11,9 +11,8 @@ let opts = {
   ]
 };
 
-let client = new tmi.client(opts);
+let bot = new tmi.client(opts);
 
 module.exports = {
-  client,
-  channel: opts.channels[0]
+  bot
 }

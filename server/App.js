@@ -1,5 +1,4 @@
 import Bot from './Bot';
-import oauth from './oauthToken';
 
 export default class App {
   constructor(){
@@ -8,7 +7,7 @@ export default class App {
         apiKey: process.env.darkbot_token,
         botChannel: 'darkswordsmanbot',
         channel: 'darkswordsmantv',
-        commandFolder: './commands/commandObjects',
+        commandFolder: 'commands/commandObjects/',
         commands: {}
       })
     }

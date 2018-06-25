@@ -1,3 +1,5 @@
-import Server from './Server';
+import App from './App';
 
-var server = new Server();
+const darkBot = new App();
+
+darkBot.init();

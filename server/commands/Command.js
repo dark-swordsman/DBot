@@ -1,5 +1,10 @@
 export default class Command {
-  constructor(config) {
-    this.name = config.name
+  constructor(options){
+    this.name = options.name,
+    this.action = options.action
+  }
+
+  call() {
+    this.action();
   }
 }

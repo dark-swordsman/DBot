@@ -1,5 +1,5 @@
-import CommandHelpers from './commands';
+import commandLoader from './commandLoader';
 
-export {
-  CommandHelpers
+module.exports = {
+  commandLoader
 }

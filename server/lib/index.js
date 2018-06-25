@@ -1,5 +1,5 @@
-import { bot } from './bot';
+import tmiBot from './tmiBot';
 
-export default {
-  bot
+module.exports = {
+  tmiBot
 }

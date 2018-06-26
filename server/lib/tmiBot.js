@@ -1,4 +1,5 @@
 import tmi from 'tmi.js';
+import Retention from './Retention';
 
 class tmiBot {
   constructor() {
@@ -33,6 +34,21 @@ class tmiBot {
       }
 
     });
+
+    // do a retention bonus on bot start to generate list
+    setTimeout(() => {
+      this.retention(this.options)
+    }, 1000);
+
+    setInterval(() => {
+      this.retention(this.options)
+    }, 420000);
+  }
+
+  retention(options) {
+    const fileLocation = 'E:/stream_loyalty_files/retention.json';
+
+    Retention.retentionBonus(options, fileLocation);
   }
 }
 

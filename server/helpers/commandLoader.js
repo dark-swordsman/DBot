@@ -28,6 +28,8 @@ function commandLoader(commandFolder) {
     console.log(`Finished loading commands. \nThere were ${totalFilesLoaded} commands loaded.`);
   }
 
+  console.log('--------');
+
   return temp;
 }
 

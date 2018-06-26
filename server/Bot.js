@@ -8,6 +8,7 @@ export default class Bot {
     this.botChannel = options.botChannel;
     this.apiKey = options.apiKey;
     this.commandFolder = options.commandFolder;
+    this.clientID = options.clientID;
     this.commands = {};
   }
 
@@ -31,7 +32,8 @@ export default class Bot {
           this.channel
         ]
       },
-      'commands': this.commands
+      'commands': this.commands,
+      'clientID': this.clientID
     }
 
     tmiBot.init(options);

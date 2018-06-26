@@ -8,6 +8,7 @@ export default class App {
         botChannel: 'darkswordsmanbot',
         channel: 'darkswordsmantv',
         commandFolder: 'commands/commandObjects/',
+        clientID: process.env.darkbot_id,
         commands: {}
       })
     }

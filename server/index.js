@@ -1,5 +1,5 @@
 import App from './App';
 
-const darkBot = new App();
+const app = new App();
 
-darkBot.init();
+app.init();

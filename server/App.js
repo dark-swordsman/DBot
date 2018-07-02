@@ -1,20 +1,19 @@
-import Bot from './Bot';
+import bot from './lib/Bot';
 
 export default class App {
   constructor(){
+    console.log(process.env.darkbot_token, process.env.darkbot_id);
+
     this.bots = {
-      darksBot: new Bot({
-        apiKey: process.env.darkbot_token,
-        botChannel: 'darkswordsmanbot',
-        channel: 'darkswordsmantv',
-        commandFolder: 'commands/commandObjects/',
-        clientID: process.env.darkbot_id,
-        commands: {}
-      })
-    }
+      darksBot: bot
+    };
   }
 
   init() {
-    this.bots.darksBot.init()
+    this.bots.darksBot.loadCommands()
+      .then(() => {
+        this.bots.darksBot.loadBot();    
+      })
+      .catch((err) => console.error(err));
   }
 }

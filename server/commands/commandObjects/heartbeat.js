@@ -1,9 +1,10 @@
 import Command from '../Command';
-import { tmiBot } from '../../lib';
+import bot from '../../lib/Bot';
 
-export default new Command({
+module.exports = new Command({
   name: '!heartbeat',
   action: () => {
-    tmiBot.twitch.say(tmiBot.options.opts.channels[0], "Yeah, yeah. Shut up.");
+    bot.say("Yeah, yeah. Shut up.");
+    console.log('poop');
   }
 });
